@@ -5,7 +5,7 @@ import datetime
 import os
 class MauaScrapper(object):
     user = '18.00522-5@maua.br'
-    password = '393530140'
+    password = 123
 
     payload= {
         'maua_email': user,
