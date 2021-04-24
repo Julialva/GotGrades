@@ -6,7 +6,7 @@ import os
 import smtplib, ssl
 class MauaScrapper(object):
     user = '18.00522-5@maua.br'
-    password = 393530140
+    password = str(os.getenv('RG'))
 
     payload= {
         'maua_email': user,
@@ -42,14 +42,14 @@ class MauaScrapper(object):
         standard_ = standard.drop(columns='Timestamp')
         diff = (new_data_ != standard_).any(1)
         diff_list = diff.to_list()
-        if False not in diff_list:
+        if False in diff_list:
             standard = new_data
             os.remove('./report_cards/' + user + '_standard.csv')
             port = 465
             smtp_server = 'smtp.gmail.com'
-            sender_email = 'julio-gris@hotmail.com'
+            sender_email = 'hunterpayer@gmail.com'
             receiver_email = 'julio-gris@hotmail.com'
-            password = 'Julios3467'
+            password = str(os.getenv('password'))
             message = """\
             Subject: Hi there
 
