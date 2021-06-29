@@ -11,6 +11,7 @@ class MauaScrapper(object):
     payload= {
         'maua_email': user,
         'maua_senha': password,
+        'maua_submit': "Enviar"
      }
      
     #create session
@@ -19,7 +20,7 @@ class MauaScrapper(object):
     #navigate to page
     response = session.post('https://www2.maua.br/mauanet.2.0', data = payload)
     report_card_page = session.get('https://www2.maua.br/mauanet.2.0/boletim-escolar')
-
+    print(report_card_page.text)
     # reading table
     table = pd.read_html(report_card_page.text)
     report_card = table[1]
@@ -58,3 +59,5 @@ class MauaScrapper(object):
             with smtplib.SMTP_SSL(smtp_server,port,context=context) as server:
                 server.login(sender_email,password)
                 server.sendmail(sender_email,receiver_email,message)
+instance =MauaScrapper()
+instance.compare(user = '18.00522-5@maua.br')

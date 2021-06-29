@@ -1,9 +1,9 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
-import main
+import GradeScrapper
 
 
 def job_schedule():
-    instance =MauaScrapper()
+    instance =GradeScrapper.MauaScrapper()
     instance.compare(user = '18.00522-5@maua.br')
     
             
@@ -11,5 +11,5 @@ def job_schedule():
 
 scheduler = BlockingScheduler({'apscheduler.timezone': 'Brazil/East'})
 
-scheduler.add_job(job_schedule, 'cron', hour='*', minute=1)
+scheduler.add_job(job_schedule, 'cron', hour='*', minute=59)
 scheduler.start()
